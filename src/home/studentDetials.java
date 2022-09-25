@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.sql.*;
 import Project.ConnectionProvider;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -35,23 +36,25 @@ public class studentDetials extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         close = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        submitInfo = new javax.swing.JButton();
+        st_id = new javax.swing.JTextField();
+        st_name = new javax.swing.JTextField();
+        st_Male = new javax.swing.JRadioButton();
+        st_female = new javax.swing.JRadioButton();
+        st_others = new javax.swing.JRadioButton();
+        st_phoneNo = new javax.swing.JTextField();
+        st_email = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        password = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        rollNumber = new javax.swing.JTextField();
-        name = new javax.swing.JTextField();
-        fatherName = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        contactNumber = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        address = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        motherName = new javax.swing.JTextField();
-        Save = new javax.swing.JButton();
+        gologin = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -91,67 +94,109 @@ public class studentDetials extends javax.swing.JFrame {
         getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1263, 11, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 86, 1312, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("Name :");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 200, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(223, 249, 251));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel6.setText("Father Name :");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 245, -1, -1));
+        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setText("Name :");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("Mother Name :");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 294, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel5.setText("ID :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel9.setText("Gender :");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 342, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel6.setText("Gender :");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel10.setText("Contact Number :");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 401, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel7.setText("Phone No : ");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel11.setText("Email :");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 460, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel8.setText("Email :");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 370, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel13.setText("Address :");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 510, -1, -1));
+        submitInfo.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
+        submitInfo.setText("Submit and Next");
+        submitInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitInfoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(submitInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, -1, -1));
 
-        rollNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(rollNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 142, 426, -1));
+        st_id.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(st_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 529, -1));
 
-        name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 197, 426, -1));
+        st_name.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(st_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 529, -1));
 
-        fatherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(fatherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 242, 426, -1));
+        st_Male.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        st_Male.setText("Male");
+        st_Male.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                st_MaleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(st_Male, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 339, 426, -1));
+        st_female.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        st_female.setText("Female");
+        st_female.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                st_femaleActionPerformed(evt);
+            }
+        });
+        jPanel1.add(st_female, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, -1, -1));
 
-        contactNumber.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(contactNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 398, 426, -1));
+        st_others.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        st_others.setText("Others");
+        st_others.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                st_othersActionPerformed(evt);
+            }
+        });
+        jPanel1.add(st_others, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 210, -1, -1));
 
-        email.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 457, 426, -1));
+        st_phoneNo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(st_phoneNo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 529, -1));
 
-        address.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 507, 426, -1));
+        st_email.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jPanel1.add(st_email, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 529, -1));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel12.setText("Roll Number :");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 145, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel9.setText("Set Password: ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 430, -1, -1));
 
-        motherName.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        getContentPane().add(motherName, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 291, 426, -1));
+        password.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 530, -1));
 
-        Save.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/save.png"))); // NOI18N
-        Save.setText("Save");
-        getContentPane().add(Save, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 630, 249, -1));
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel10.setText("Have an account? ");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 600, -1, -1));
+
+        gologin.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        gologin.setForeground(new java.awt.Color(0, 0, 255));
+        gologin.setText("Go login page");
+        gologin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gologinMouseClicked(evt);
+            }
+        });
+        jPanel1.add(gologin, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 600, -1, -1));
+
+        jCheckBox1.setText("Show password");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 480, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, 80, 1440, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -167,6 +212,141 @@ public class studentDetials extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_closeActionPerformed
+    private boolean checkIdIsThere(String s){
+        try{
+            Connection con =ConnectionProvider.getCon();
+            Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+    ResultSet.CONCUR_READ_ONLY);
+            
+            
+            
+            ResultSet rsl=st.executeQuery("select rollNo from student");
+            while(rsl.next()){
+             String s1=rsl.getString(1);
+             if(s1.equals(s)){
+                 return true;
+             }
+            }
+            
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return false;
+    }
+    private void submitInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitInfoActionPerformed
+        String rollNo=st_id.getText();
+        String name=st_name.getText();
+        String phoneNo=st_phoneNo.getText();
+        String email=st_email.getText();
+        String gender="";
+        String markes="0";
+        String pass=password.getText();
+        if(st_Male.isSelected()){
+            gender=st_Male.getText();
+            
+        }
+        else if(st_female.isSelected()){
+            gender=st_female.getText();
+            
+        }
+        else if(st_others.isSelected()){
+            gender=st_others.getText();
+            
+        }
+        if(rollNo.isEmpty()|| name.isEmpty()||phoneNo.isEmpty()||email.isEmpty()||gender.isEmpty()||pass.isEmpty()){
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "All field will be fullfiled !");
+            
+        }
+        else{
+            if(!rollNo.matches("^CE\\d{5}$")){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "Id must be start with CE and length will be 7 !");
+            }
+            else if(checkIdIsThere(rollNo)){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "The Id you given is already exist.");
+            }
+            else if(!phoneNo.matches("^\\+?(88)?0?1[3456789][0-9]{8}\\b")){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "Put a valid phone no !");
+            
+            }
+            else if(!email.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$")){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "Put a valid email address !");
+            }
+            else if(pass.length()<6){
+                JFrame jf=new JFrame();
+                jf.setAlwaysOnTop(true);
+                JOptionPane.showMessageDialog(jf, "Password length should be 6 or more !");
+            }
+            else{
+                int a=JOptionPane.showConfirmDialog(null, "Are you sure?","Select",JOptionPane.YES_NO_OPTION);
+                if(a==0){
+                    try{
+                        Connection con =ConnectionProvider.getCon();
+                        PreparedStatement ps=con.prepareStatement("insert into student values(?,?,?,?,?,?,?)");
+                        ps.setString(1, rollNo);
+                        ps.setString(2, name);
+                        ps.setString(3, gender);
+                        ps.setString(4, phoneNo);
+                        ps.setString(5, email);
+                        ps.setString(6, markes);
+                        ps.setString(7, pass);
+                        
+                        ps.executeUpdate();
+                        setVisible(false);
+                        new instractionStudent(rollNo).setVisible(true);
+                    }catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, ex);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_submitInfoActionPerformed
+
+    private void st_MaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_st_MaleActionPerformed
+        if(st_Male.isSelected()){
+            st_female.setSelected(false);
+            st_others.setSelected(false);
+        }
+    }//GEN-LAST:event_st_MaleActionPerformed
+
+    private void st_femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_st_femaleActionPerformed
+        if(st_female.isSelected()){
+            st_Male.setSelected(false);
+            st_others.setSelected(false);
+        }
+    }//GEN-LAST:event_st_femaleActionPerformed
+
+    private void st_othersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_st_othersActionPerformed
+        if(st_others.isSelected()){
+            st_Male.setSelected(false);
+            st_female.setSelected(false);
+        }
+    }//GEN-LAST:event_st_othersActionPerformed
+
+    private void gologinMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gologinMouseClicked
+        setVisible(false);
+        new StudentLogin().setVisible(true);
+    }//GEN-LAST:event_gologinMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+        if(jCheckBox1.isSelected())
+                {
+                    password.setEchoChar((char)0);
+                }
+                else
+                     password.setEchoChar('*');
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,29 +384,31 @@ public class studentDetials extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Save;
-    private javax.swing.JTextField address;
     private javax.swing.JButton back;
     private javax.swing.JButton close;
-    private javax.swing.JTextField contactNumber;
     private javax.swing.JLabel dateShow;
-    private javax.swing.JTextField email;
-    private javax.swing.JTextField fatherName;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel gologin;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField motherName;
-    private javax.swing.JTextField name;
-    private javax.swing.JTextField rollNumber;
+    private javax.swing.JPasswordField password;
+    private javax.swing.JRadioButton st_Male;
+    private javax.swing.JTextField st_email;
+    private javax.swing.JRadioButton st_female;
+    private javax.swing.JTextField st_id;
+    private javax.swing.JTextField st_name;
+    private javax.swing.JRadioButton st_others;
+    private javax.swing.JTextField st_phoneNo;
+    private javax.swing.JButton submitInfo;
     // End of variables declaration//GEN-END:variables
 }

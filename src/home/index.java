@@ -68,7 +68,7 @@ public class index extends javax.swing.JFrame {
 
     private void studentLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLoginActionPerformed
         setVisible(false);
-        new studentDetials().setVisible(true);
+        new StudentLogin().setVisible(true);
         
     }//GEN-LAST:event_studentLoginActionPerformed
 

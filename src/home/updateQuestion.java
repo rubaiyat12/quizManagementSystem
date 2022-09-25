@@ -5,14 +5,40 @@ import java.sql.*;
 import Project.ConnectionProvider;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
 
 public class updateQuestion extends javax.swing.JFrame {
 
    
     public updateQuestion() {
         initComponents();
+        clearText();
+        updateTable();
     }
 
+    private void updateTable(){
+        try
+        {
+            Connection con=ConnectionProvider.getCon();
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("select * from question");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    private void clearText(){
+        questionName.setText("");
+        option1.setText("");
+        option2.setText("");
+        option3.setText("");
+        option4.setText("");
+        answer.setText("");
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -23,23 +49,23 @@ public class updateQuestion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         close = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        questionId = new javax.swing.JTextField();
-        search = new javax.swing.JButton();
-        question = new javax.swing.JTextField();
+        clear = new javax.swing.JButton();
+        update = new javax.swing.JButton();
+        questionName = new javax.swing.JTextField();
         option1 = new javax.swing.JTextField();
         option2 = new javax.swing.JTextField();
         option3 = new javax.swing.JTextField();
         option4 = new javax.swing.JTextField();
         answer = new javax.swing.JTextField();
-        update = new javax.swing.JButton();
-        clear = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -63,89 +89,90 @@ public class updateQuestion extends javax.swing.JFrame {
         getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(1094, 11, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 86, 1197, 10));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel3.setText("Question ID:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 118, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel4.setText("Question:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(82, 164, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel3.setText("Question Name:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 14, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel5.setText("Option 1:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 213, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setText("Option 1:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 45, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel6.setText("Option 2:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 262, -1, -1));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel5.setText("Option 2:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 84, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel7.setText("Option 3:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 311, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel6.setText("Option 3:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 123, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel8.setText("Option 4:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 356, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel7.setText("Option 4:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 157, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel9.setText("Answer:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 405, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel8.setText("Answer:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(216, 194, -1, -1));
 
-        questionId.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(questionId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 115, 251, -1));
-
-        search.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/search.png"))); // NOI18N
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(611, 114, -1, -1));
-
-        question.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(question, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 161, 701, -1));
-
-        option1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 701, -1));
-
-        option2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 259, 701, -1));
-
-        option3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 308, 701, -1));
-
-        option4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        option4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                option4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(option4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 353, 701, -1));
-
-        answer.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 402, 701, -1));
-
-        update.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/save.png"))); // NOI18N
-        update.setText("Update");
-        update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateActionPerformed(evt);
-            }
-        });
-        getContentPane().add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 467, -1, -1));
-
-        clear.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/clear.png"))); // NOI18N
+        clear.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         clear.setText("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
             }
         });
-        getContentPane().add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 467, -1, -1));
+        jPanel1.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 249, -1, -1));
+
+        update.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 249, -1, -1));
+
+        questionName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(questionName, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 11, 553, -1));
+
+        option1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 45, 553, -1));
+
+        option2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 84, 553, -1));
+
+        option3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(option3, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 123, 553, -1));
+
+        option4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(option4, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 157, 553, -1));
+
+        answer.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jPanel1.add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 191, 553, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 298, 1180, 171));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1200, 480));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,94 +182,78 @@ public class updateQuestion extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_closeActionPerformed
 
-    private void option4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_option4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_option4ActionPerformed
-
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        String id=questionId.getText();
-        try{
-            Connection con =ConnectionProvider.getCon();
-             Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-    ResultSet.CONCUR_READ_ONLY);
-             ResultSet rs=st.executeQuery("select * from question where id='"+id+"'");
-             if(rs.first()){
-                 question.setText(rs.getString(2));
-                 option1.setText(rs.getString(3));
-                 option2.setText(rs.getString(4));
-                 option3.setText(rs.getString(5));
-                 option4.setText(rs.getString(6));
-                 answer.setText(rs.getString(7));
-                 questionId.setEditable(false);
-             }
-             else{
-                 JFrame jf=new JFrame();
-                 jf.setAlwaysOnTop(true);
-                 JOptionPane.showMessageDialog(jf, "Question id does not exist!");
-             }
-             
-        }
-        catch(Exception e){
-            JFrame jf=new JFrame();
-                 jf.setAlwaysOnTop(true);
-                 JOptionPane.showMessageDialog(jf, e);
-        }
-    }//GEN-LAST:event_searchActionPerformed
-
-    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
-        String id=questionId.getText();
-        String name=question.getText();
-        String opt1=option1.getText();
-        String opt2=option2.getText();
-        String opt3=option3.getText();
-        String opt4=option4.getText();
-        String ans=answer.getText();
-        try{
-             if(id.isEmpty()|| name.isEmpty()||opt1.isEmpty()||opt2.isEmpty()||opt3.isEmpty()||opt4.isEmpty()||ans.isEmpty()){
-                 JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf, "All field will be fullfiled !");
-            }
-            else{
-               
-            
-            
-            Connection con=ConnectionProvider.getCon();
-                PreparedStatement ps=con.prepareStatement("update question set name=?,opt1=?,opt2=?,opt3=?,opt4=?,answer=? where id=?");
-                
-                ps.setString(1, name);
-                ps.setString(2, opt1);
-                ps.setString(3, opt2);
-                ps.setString(4, opt3);
-                ps.setString(5, opt4);
-                ps.setString(6, ans);
-                ps.setString(7, id);
-                ps.executeUpdate();
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, "Successfully updated");
-            setVisible(false);
-            new updateQuestion().setVisible(true);
-            }
-        }
-        catch(Exception e){
-            JFrame jf=new JFrame();
-            jf.setAlwaysOnTop(true);
-            JOptionPane.showMessageDialog(jf, e);
-            
-        }
-    }//GEN-LAST:event_updateActionPerformed
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int i=jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        questionName.setText(model.getValueAt(i, 1).toString());
+        option1.setText(model.getValueAt(i, 2).toString());
+        option2.setText(model.getValueAt(i, 3).toString());
+        option3.setText(model.getValueAt(i, 4).toString());
+        option4.setText(model.getValueAt(i, 5).toString());
+        answer.setText(model.getValueAt(i, 6).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-        questionId.setText("");
-        question.setText("");
-        option1.setText("");
-        option2.setText("");
-        option3.setText("");
-        option4.setText("");
-        answer.setText("");
-        questionId.setEditable(false);
+        clearText();
+        jTable1.getSelectionModel().clearSelection();
     }//GEN-LAST:event_clearActionPerformed
+
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        
+        if(jTable1.getSelectionModel().isSelectionEmpty()){
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "Please select any question for update!");
+        }
+        else{
+            int row =jTable1.getSelectedRow();
+            String cellId=jTable1.getModel().getValueAt(row, 0).toString();
+            int id=Integer.parseInt(cellId);
+            String name=questionName.getText();
+            String opt1=option1.getText();
+            String opt2=option2.getText();
+            String opt3=option3.getText();
+            String opt4=option4.getText();
+            String ans=answer.getText();
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            int a=JOptionPane.showConfirmDialog(jf, "Are you sure want to update this ?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                if(name.isEmpty()||opt1.isEmpty()||opt2.isEmpty()||opt3.isEmpty()||opt4.isEmpty()||ans.isEmpty()){
+                 
+                    jf.setAlwaysOnTop(true);
+                    JOptionPane.showMessageDialog(jf, "All field will be fullfiled !");
+                }
+                else{
+                    try{
+                        Connection con=ConnectionProvider.getCon();
+                        PreparedStatement ps=con.prepareStatement("update question set name=?,opt1=?,opt2=?,opt3=?,opt4=?,answer=? where id=?");
+                
+                        ps.setString(1, name);
+                        ps.setString(2, opt1);
+                        ps.setString(3, opt2);
+                        ps.setString(4, opt3);
+                        ps.setString(5, opt4);
+                        ps.setString(6, ans);
+                        ps.setInt(7, id);
+                        ps.executeUpdate();
+            
+                        jf.setAlwaysOnTop(true);
+                        JOptionPane.showMessageDialog(jf, "Successfully updated");
+                        clearText();
+                        jTable1.getSelectionModel().clearSelection();
+                        updateTable();
+                        
+                    }
+                    catch(Exception ex){
+                        
+                        jf.setAlwaysOnTop(true);
+                        JOptionPane.showMessageDialog(jf, ex);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -292,15 +303,15 @@ public class updateQuestion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField option1;
     private javax.swing.JTextField option2;
     private javax.swing.JTextField option3;
     private javax.swing.JTextField option4;
-    private javax.swing.JTextField question;
-    private javax.swing.JTextField questionId;
-    private javax.swing.JButton search;
+    private javax.swing.JTextField questionName;
     private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }

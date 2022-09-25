@@ -4,6 +4,8 @@ import java.sql.*;
 import Project.ConnectionProvider;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import net.proteanit.sql.DbUtils;
 
 public class deleteQuestion extends javax.swing.JFrame {
 
@@ -12,6 +14,31 @@ public class deleteQuestion extends javax.swing.JFrame {
      */
     public deleteQuestion() {
         initComponents();
+        clearText();
+        updateTable();
+        
+    }
+    private void clearText(){
+        questionName.setText("");
+        option1.setText("");
+        option2.setText("");
+        option3.setText("");
+        option4.setText("");
+        answer.setText("");
+    }
+    private void updateTable(){
+        try
+        {
+            Connection con=ConnectionProvider.getCon();
+            Statement st=con.createStatement();
+            ResultSet rs=st.executeQuery("select * from question");
+            jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
     /**
@@ -28,28 +55,28 @@ public class deleteQuestion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         close = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        questionName = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        questionId = new javax.swing.JTextField();
-        question = new javax.swing.JTextField();
-        option1 = new javax.swing.JTextField();
-        option2 = new javax.swing.JTextField();
-        option3 = new javax.swing.JTextField();
-        option4 = new javax.swing.JTextField();
-        answer = new javax.swing.JTextField();
-        search = new javax.swing.JButton();
+        option1 = new javax.swing.JLabel();
+        option2 = new javax.swing.JLabel();
+        option3 = new javax.swing.JLabel();
+        option4 = new javax.swing.JLabel();
+        answer = new javax.swing.JLabel();
         clear = new javax.swing.JButton();
         delete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation(new java.awt.Point(150, 183));
+        setLocation(new java.awt.Point(150, 150));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,89 +96,96 @@ public class deleteQuestion extends javax.swing.JFrame {
         getContentPane().add(close, new org.netbeans.lib.awtextra.AbsoluteConstraints(983, 25, -1, -1));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 112, 1086, 10));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel3.setText("Question ID:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 144, -1, -1));
+        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel4.setText("Question:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 194, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel3.setText("Question Name :");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 11, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        questionName.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        questionName.setText("jLabel4");
+        jPanel2.add(questionName, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 11, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel5.setText("Option 1:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 240, -1, -1));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 44, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel6.setText("Option 2:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 276, -1, -1));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 77, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel7.setText("Option 3:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 313, -1, -1));
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 110, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
         jLabel8.setText("Option 4:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 355, -1, -1));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 138, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        jLabel9.setText("Answer:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 399, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel9.setText("Answer :");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 171, -1, -1));
 
-        questionId.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        questionId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                questionIdActionPerformed(evt);
-            }
-        });
-        getContentPane().add(questionId, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 141, 190, -1));
+        option1.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        option1.setText("jLabel10");
+        jPanel2.add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 44, -1, -1));
 
-        question.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(question, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 191, 702, -1));
+        option2.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        option2.setText("jLabel11");
+        jPanel2.add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 77, -1, -1));
 
-        option1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option1, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 234, 702, -1));
+        option3.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        option3.setText("jLabel12");
+        jPanel2.add(option3, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 110, -1, -1));
 
-        option2.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option2, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 276, 702, -1));
+        option4.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        option4.setText("jLabel13");
+        jPanel2.add(option4, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 138, -1, -1));
 
-        option3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option3, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 313, 702, -1));
+        answer.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        answer.setText("jLabel14");
+        jPanel2.add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 171, -1, -1));
 
-        option4.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(option4, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 355, 702, -1));
-
-        answer.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        getContentPane().add(answer, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 396, 702, -1));
-
-        search.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/search.png"))); // NOI18N
-        search.setText("Search");
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 140, -1, -1));
-
-        clear.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        clear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/clear.png"))); // NOI18N
+        clear.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
         clear.setText("Clear");
         clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clearActionPerformed(evt);
             }
         });
-        getContentPane().add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(565, 479, -1, -1));
+        jPanel2.add(clear, new org.netbeans.lib.awtextra.AbsoluteConstraints(198, 211, -1, -1));
 
-        delete.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
-        delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/delete.png"))); // NOI18N
+        delete.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteActionPerformed(evt);
             }
         });
-        getContentPane().add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(272, 479, -1, -1));
+        jPanel2.add(delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(374, 211, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 1200, 290));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, 1130, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,69 +195,60 @@ public class deleteQuestion extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_closeActionPerformed
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        String id=questionId.getText();
-        try{
-                     Connection con =ConnectionProvider.getCon();
-             Statement st=con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-    ResultSet.CONCUR_READ_ONLY);
-             ResultSet rs=st.executeQuery("select * from question where id='"+id+"'");
-            if(rs.first()){
-                
-                question.setText(rs.getString(2));
-                option1.setText(rs.getString(3));
-                option2.setText(rs.getString(4));
-                option3.setText(rs.getString(5));
-                option4.setText(rs.getString(6));
-                answer.setText(rs.getString(7));
-                questionId.setEditable(false);
-            }
-            else{
-                JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf, "Question id does not exist");
-            }
-        }
-        catch(Exception ex){
-            JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf, ex);
-        }
-    }//GEN-LAST:event_searchActionPerformed
-
-    private void questionIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_questionIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_questionIdActionPerformed
-
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
-        String id =questionId.getText();
-        try{
-            Connection con=ConnectionProvider.getCon();
-            PreparedStatement ps=con.prepareStatement("delete from question where id=?");
-            ps.setString(1, id);
-            ps.executeUpdate();
+        if(jTable1.getSelectionModel().isSelectionEmpty()){
             JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf, "Successfully deleted");
-                setVisible(false);
-                new deleteQuestion().setVisible(true);
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "Please select any question for delete!");
         }
-        catch(Exception ex){
+        else{
+            int row =jTable1.getSelectedRow();
+            String cellId=jTable1.getModel().getValueAt(row, 0).toString();
+            int id=Integer.parseInt(cellId);
             JFrame jf=new JFrame();
-                jf.setAlwaysOnTop(true);
-                JOptionPane.showMessageDialog(jf, ex);
+            jf.setAlwaysOnTop(true);
+            int a=JOptionPane.showConfirmDialog(jf, "Are you sure want to delete this ?","Select",JOptionPane.YES_NO_OPTION);
+            if(a==0){
+                try{
+                    Connection con=ConnectionProvider.getCon();
+                    PreparedStatement ps=con.prepareStatement("delete from question where id=?");
+                    ps.setInt(1, id);
+                    ps.executeUpdate();
+                    PreparedStatement ps1=con.prepareStatement("update question set id=id-1 where id>?");
+                    ps1.setInt(1, id);
+                    ps1.executeUpdate();
+                    
+                    jf.setAlwaysOnTop(true);
+                    JOptionPane.showMessageDialog(jf, "Successfully deleted");
+                    clearText();
+                    updateTable();
+                }
+                catch(Exception c){
+                    JOptionPane.showMessageDialog(null, c);
+                }
+            }
+            
         }
+        
+        
+        
+        
     }//GEN-LAST:event_deleteActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int i=jTable1.getSelectedRow();
+        TableModel model=jTable1.getModel();
+        questionName.setText(model.getValueAt(i, 1).toString());
+        option1.setText(model.getValueAt(i, 2).toString());
+        option2.setText(model.getValueAt(i, 3).toString());
+        option3.setText(model.getValueAt(i, 4).toString());
+        option4.setText(model.getValueAt(i, 5).toString());
+        answer.setText(model.getValueAt(i, 6).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
     private void clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearActionPerformed
-       questionId.setText("");
-       question.setText("");
-       option1.setText("");
-       option2.setText("");
-       option3.setText("");
-       option4.setText("");
-       answer.setText("");
-       questionId.setEditable(true);
+        clearText();
+        jTable1.getSelectionModel().clearSelection();
     }//GEN-LAST:event_clearActionPerformed
 
     /**
@@ -262,27 +287,27 @@ public class deleteQuestion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField answer;
+    private javax.swing.JLabel answer;
     private javax.swing.JButton clear;
     private javax.swing.JButton close;
     private javax.swing.JButton delete;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField option1;
-    private javax.swing.JTextField option2;
-    private javax.swing.JTextField option3;
-    private javax.swing.JTextField option4;
-    private javax.swing.JTextField question;
-    private javax.swing.JTextField questionId;
-    private javax.swing.JButton search;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel option1;
+    private javax.swing.JLabel option2;
+    private javax.swing.JLabel option3;
+    private javax.swing.JLabel option4;
+    private javax.swing.JLabel questionName;
     // End of variables declaration//GEN-END:variables
 }

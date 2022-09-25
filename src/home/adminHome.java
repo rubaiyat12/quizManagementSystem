@@ -88,6 +88,11 @@ public static int open=0;
         jMenu6.setText("All Student Result");
         jMenu6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenu6.setMargin(new java.awt.Insets(0, 5, 0, 30));
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
         jMenuBar1.add(jMenu6);
 
         logout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home/Logout.png"))); // NOI18N
@@ -183,6 +188,19 @@ public static int open=0;
             JOptionPane.showMessageDialog(jf, "One form is already open");
         }
     }//GEN-LAST:event_deleteQuestionMouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        // TODO add your handling code here:
+         if(open==0){
+            new allStudentResult().setVisible(true);
+            open=1;
+        }
+        else{
+            JFrame jf=new JFrame();
+            jf.setAlwaysOnTop(true);
+            JOptionPane.showMessageDialog(jf, "One form is already open");
+        }
+    }//GEN-LAST:event_jMenu6MouseClicked
 
     
     public static void main(String args[]) {
